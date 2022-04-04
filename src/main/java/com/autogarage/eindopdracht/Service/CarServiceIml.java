@@ -59,6 +59,7 @@ public class CarServiceIml implements CarService {
         }
     }
 
+    // UPDATE
     @Override
     public CarDTO updateCar(CarDTO carDTO, Long id) {
         Car car = carRepo.findById(id).orElseThrow(() -> new RecordNotFoundException("Car not found"));
@@ -70,6 +71,7 @@ public class CarServiceIml implements CarService {
         return modelMapper.map(car, CarDTO.class);
     }
 
+    // DELETE
     @Override
     public CarDTO deleteCar(Long id) {
         Optional<Car> car = carRepo.findById(id);
@@ -78,7 +80,7 @@ public class CarServiceIml implements CarService {
             carRepo.deleteById(id);
             return carDTO;
         } else {
-            throw new RecordNotFoundException("unable to find customer");
+            throw new RecordNotFoundException("unable to find car");
         }
     }
 }

@@ -1,10 +1,13 @@
 package com.autogarage.eindopdracht.Service;
 
-import com.autogarage.eindopdracht.Model.Appointment;
+import com.autogarage.eindopdracht.DTO.AppointmentDTO;
 
 import java.util.List;
 
 public interface AppointmentService {
-    Appointment createAppointment(Appointment appointment);
-   List<Appointment > findAllAppointments ();
+    AppointmentDTO createAppointment(AppointmentDTO appointment);
+    List<AppointmentDTO > findAllAppointments ();
+    AppointmentDTO findAppointmentById(Long id);
+    AppointmentDTO updateAppointment(AppointmentDTO appointmentDTO, Long id);
+    AppointmentDTO deleteAppointment(Long id);
 }
