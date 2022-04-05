@@ -16,7 +16,9 @@ public class Employee {
         @GeneratedValue
         private Long id;
 
-        private String name;
+        private String username;
+        private String password;
+        private Boolean enabled;
         private String lastname;
 
         private String role;

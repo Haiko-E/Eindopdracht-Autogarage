@@ -6,6 +6,7 @@ import com.autogarage.eindopdracht.Model.Employee;
 import com.autogarage.eindopdracht.Repository.EmployeeRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,9 +21,12 @@ public class EmployeeServiceIml implements EmployeeService {
     @Autowired
     EmployeeRepo employeeRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
-        System.out.println(employeeDTO);
+        employeeDTO.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
         Employee newEmployee = modelMapper.map(employeeDTO, Employee.class);
         Employee savedEmployee = employeeRepo.save(newEmployee);
         return modelMapper.map(savedEmployee, EmployeeDTO.class);
@@ -55,7 +59,9 @@ public class EmployeeServiceIml implements EmployeeService {
     @Override
     public EmployeeDTO updateEmployee(EmployeeDTO employeeDTO, Long id) {
         Employee employee = employeeRepo.findById(id).orElseThrow(() -> new RecordNotFoundException("employee not found"));
-        employee.setName(employeeDTO.getName());
+        employee.setUsername(employeeDTO.getUsername());
+        employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
+        employee.setEnabled(employeeDTO.getEnabled());
         employee.setLastname(employeeDTO.getLastname());
         employee.setRole(employeeDTO.getRole().toString());
         employeeRepo.save(employee);
