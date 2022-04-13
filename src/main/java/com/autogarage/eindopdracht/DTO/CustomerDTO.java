@@ -1,7 +1,9 @@
 package com.autogarage.eindopdracht.DTO;
 
 import com.autogarage.eindopdracht.Model.Car;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,6 +12,8 @@ import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerDTO {
 
     private Long id;

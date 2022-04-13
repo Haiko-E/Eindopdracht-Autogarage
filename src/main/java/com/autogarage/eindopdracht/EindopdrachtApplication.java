@@ -1,5 +1,6 @@
 package com.autogarage.eindopdracht;
 
+import com.autogarage.eindopdracht.Service.JWTService;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,11 @@ public class EindopdrachtApplication {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public JWTService jwtService() {
+		return new JWTService();
 	}
 
 
