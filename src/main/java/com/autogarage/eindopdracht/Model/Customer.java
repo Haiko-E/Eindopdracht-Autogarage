@@ -1,6 +1,8 @@
 package com.autogarage.eindopdracht.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "customers")
+@JsonInclude(Include.NON_NULL)
 public class Customer {
 
     @Id
@@ -28,7 +31,7 @@ public class Customer {
     private String city;
 
     @OneToMany(mappedBy = "customer")
-    @JsonBackReference
+    @JsonManagedReference(value = "customer-car")
     private List<Car> cars;
 
 

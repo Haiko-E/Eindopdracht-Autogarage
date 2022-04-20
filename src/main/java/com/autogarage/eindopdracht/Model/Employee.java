@@ -1,5 +1,7 @@
 package com.autogarage.eindopdracht.Model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Data
 @Table(name = "employees")
+@JsonInclude(Include.NON_NULL)
 public class Employee {
 
         @Id

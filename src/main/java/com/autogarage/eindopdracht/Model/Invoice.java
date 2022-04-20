@@ -1,6 +1,5 @@
 package com.autogarage.eindopdracht.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
@@ -13,18 +12,17 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "parts")
+@Table(name = "invoices")
 @JsonInclude(Include.NON_NULL)
-public class Part {
+public class Invoice {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String name;
-    private Integer price;
-    private Integer inStock;
+    private Integer totalPrice;
+    private Boolean isPayed;
 
-    @OneToOne(targetEntity = MaintenanceItem.class, mappedBy = "part")
-    @JsonBackReference(value = "maintenanceItem-part")
-    private MaintenanceItem maintenanceItem;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "maintenance_id")
+    private Maintenance maintenance;
 }

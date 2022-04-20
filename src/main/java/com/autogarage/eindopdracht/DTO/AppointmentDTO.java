@@ -3,6 +3,8 @@ package com.autogarage.eindopdracht.DTO;
 import com.autogarage.eindopdracht.Model.Auditable;
 import com.autogarage.eindopdracht.Model.Car;
 import com.autogarage.eindopdracht.Model.Customer;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,7 +14,8 @@ import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AppointmentDTO extends Auditable {
+@JsonInclude(Include.NON_NULL)
+public class AppointmentDTO extends Auditable<String> {
     private Long id;
 
     @NotNull(message = "brand cant be null")

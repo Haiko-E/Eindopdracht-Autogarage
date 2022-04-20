@@ -43,7 +43,8 @@ public class CarServiceIml implements CarService {
     public CarDTO findCarByLicensePlate(String licensePlate) {
         Optional<Car> car = carRepo.findByLicensePlate(licensePlate);
         if (car.isPresent()) {
-            return modelMapper.map(car.get(), CarDTO.class);
+            Car car1 = car.get();
+            return modelMapper.map(car1, CarDTO.class);
         } else {
             throw new RecordNotFoundException("Car not found");
         }
@@ -53,7 +54,8 @@ public class CarServiceIml implements CarService {
     public CarDTO findCarById(Long id) {
         Optional<Car> car = carRepo.findById(id);
         if (car.isPresent()) {
-            return modelMapper.map(car.get(), CarDTO.class);
+            Car car1 = car.get();
+            return modelMapper.map(car1, CarDTO.class);
         } else {
             throw new RecordNotFoundException("Car not found");
         }

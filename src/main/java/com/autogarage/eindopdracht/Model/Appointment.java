@@ -1,5 +1,7 @@
 package com.autogarage.eindopdracht.Model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +13,7 @@ import java.util.Date;
 @Entity
 @Data
 @Table(name = "appointments")
+@JsonInclude(Include.NON_NULL)
 public class Appointment extends Auditable<String> {
 
     @Id

@@ -52,8 +52,8 @@ class CustomerServiceImlTest {
 
     @BeforeEach
     void setUp() {
-        Car car1 = new Car(1002L,"Seat", "Leon", "3-srp-wx", null);
-        Car car2 = new Car(1003L,"Ford", "Focus", "97-rp-wx", null);
+        Car car1 = new Car(1002L,"Seat", "Leon", "3-srp-wx", null, null);
+        Car car2 = new Car(1003L,"Ford", "Focus", "97-rp-wx", null, null);
         List<Car> cars = new ArrayList<>();
         cars.add(car1);
         cars.add(car2);
@@ -111,8 +111,8 @@ class CustomerServiceImlTest {
     @Test
     void findCustomerCars() {
         List<CarDTO> carDTOS = new ArrayList<>();
-        CarDTO carDTO1 = new CarDTO(1002L,"Seat", "Leon", "3-srp-wx", null);
-        CarDTO carDTO2 = new CarDTO(1003L,"Ford", "Focus", "97-rp-wx", null);
+        CarDTO carDTO1 = new CarDTO(1002L,"Seat", "Leon", "3-srp-wx", null, null);
+        CarDTO carDTO2 = new CarDTO(1003L,"Ford", "Focus", "97-rp-wx", null, null);
         carDTOS.add(carDTO1);
         carDTOS.add(carDTO2);
 

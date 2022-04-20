@@ -1,29 +1,33 @@
 package com.autogarage.eindopdracht.DTO;
 
+import com.autogarage.eindopdracht.Model.Car;
+import com.autogarage.eindopdracht.Model.Invoice;
+import com.autogarage.eindopdracht.Model.MaintenanceItem;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class PartDTO {
+public class MaintenanceDTO {
 
     private Long id;
 
-    @NotNull(message = "name cant be null")
-    @NotBlank(message = "name cant be blank")
-    private String name;
+    @NotNull(message = "car cant be null")
+    private Car car;
 
-    @NotNull(message = "price cant be null")
-    private Integer price;
+    private List<MaintenanceItem> maintenanceItems;
 
-    @NotNull(message = "inStock cant be null")
-    private Integer inStock;
+    private Invoice invoice;
+
+
+
 }

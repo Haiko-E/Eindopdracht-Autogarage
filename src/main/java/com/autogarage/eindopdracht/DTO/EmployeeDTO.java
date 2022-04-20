@@ -1,14 +1,21 @@
 package com.autogarage.eindopdracht.DTO;
 
 import com.autogarage.eindopdracht.Enum.Role;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonInclude(Include.NON_NULL)
 public class EmployeeDTO {
     private Long id;
 
