@@ -16,7 +16,7 @@ public class InvoiceDTO {
     private Long id;
 
     private Integer totalPrice;
-    private Boolean isPayed= false;
+    private Boolean isPayed;
 
     private Maintenance maintenance;
 }

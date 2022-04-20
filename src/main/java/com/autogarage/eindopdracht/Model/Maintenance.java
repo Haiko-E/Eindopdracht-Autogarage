@@ -29,6 +29,7 @@ public class Maintenance {
     private List<MaintenanceItem> maintenanceItems;
 
     @OneToOne(mappedBy = "maintenance", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference(value = "invoice-maintenance")
     private Invoice invoice;
 
 }

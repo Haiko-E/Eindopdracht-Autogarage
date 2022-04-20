@@ -1,7 +1,9 @@
 package com.autogarage.eindopdracht.Controllers;
 
+import com.autogarage.eindopdracht.DTO.InvoiceDTO;
 import com.autogarage.eindopdracht.DTO.MaintenanceDTO;
 import com.autogarage.eindopdracht.DTO.MaintenanceItemDTO;
+import com.autogarage.eindopdracht.Service.InvoiceService;
 import com.autogarage.eindopdracht.Service.MaintenanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class MaintenanceController {
 
     @Autowired
     MaintenanceService maintenanceService;
+
+    @Autowired
+    InvoiceService invoiceService;
 
     // GET REQUESTS
     @GetMapping("/maintenances")
@@ -46,10 +51,16 @@ public class MaintenanceController {
 
     }
 
-    @PostMapping("/maintenances/{id}/add")
+    @PostMapping("/maintenances/{id}/add-item")
     ResponseEntity<Object> addItemToMaintenance (@RequestBody MaintenanceItemDTO maintenanceItemDTO, @PathVariable Long id) {
         MaintenanceItemDTO maintenanceDTO =  maintenanceService.addItemToMaintenance(maintenanceItemDTO, id);
         return new ResponseEntity<>(maintenanceDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/maintenances/{id}/create-invoice")
+    ResponseEntity<Object> createInvoice (@PathVariable Long id) {
+        InvoiceDTO invoiceDTO = invoiceService.createInvoice(id);
+        return new ResponseEntity<>(invoiceDTO, HttpStatus.OK);
     }
 
     // DELETE REQUEST
