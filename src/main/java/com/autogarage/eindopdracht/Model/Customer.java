@@ -34,6 +34,11 @@ public class Customer {
     @JsonManagedReference(value = "customer-car")
     private List<Car> cars;
 
+    @OneToMany(mappedBy = "customer")
+    @JsonManagedReference(value = "customer-invoice")
+    private List<Invoice> invoices;
+
+
 
 
 

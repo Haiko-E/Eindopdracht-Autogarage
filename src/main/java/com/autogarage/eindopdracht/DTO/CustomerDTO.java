@@ -1,6 +1,7 @@
 package com.autogarage.eindopdracht.DTO;
 
 import com.autogarage.eindopdracht.Model.Car;
+import com.autogarage.eindopdracht.Model.Invoice;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
@@ -52,5 +53,6 @@ public class CustomerDTO {
 
     private List<Car> cars;
 
+    private List<Invoice> invoices;
 
 }

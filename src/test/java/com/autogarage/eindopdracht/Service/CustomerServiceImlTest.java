@@ -58,8 +58,8 @@ class CustomerServiceImlTest {
         cars.add(car1);
         cars.add(car2);
 
-        customer = new Customer(1001L, "harry", "henkst", "harry@henkst.com", "mooieweg", 6, "5435ws", "Oss", cars);
-        customerDTO = new CustomerDTO(1001L, "harry", "henkst", "harry@henkst.com", "mooieweg", 6, "5435ws", "Oss", cars);
+        customer = new Customer(1001L, "harry", "henkst", "harry@henkst.com", "mooieweg", 6, "5435ws", "Oss", cars, null);
+        customerDTO = new CustomerDTO(1001L, "harry", "henkst", "harry@henkst.com", "mooieweg", 6, "5435ws", "Oss", cars, null);
     }
 
     @Test
@@ -135,7 +135,7 @@ class CustomerServiceImlTest {
 
     @Test
     void updateCustomer() {
-        CustomerDTO verhuisdeCustomer = new CustomerDTO(1001L, "harry", "Jansen", "harry@henkst.com", "Brabantweg", 87, "1234WX", "Oss", null);
+        CustomerDTO verhuisdeCustomer = new CustomerDTO(1001L, "harry", "Jansen", "harry@henkst.com", "Brabantweg", 87, "1234WX", "Oss", null, null);
 
         Mockito
                 .when(customerRepo.findById(customerDTO.getId()))

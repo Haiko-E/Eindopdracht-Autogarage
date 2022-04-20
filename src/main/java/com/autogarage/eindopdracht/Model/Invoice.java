@@ -1,5 +1,6 @@
 package com.autogarage.eindopdracht.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -27,4 +28,9 @@ public class Invoice {
     @JoinColumn(name = "maintenance_id")
     @JsonManagedReference(value = "invoice-maintenance")
     private Maintenance maintenance;
+
+    @ManyToOne
+    @JsonBackReference(value = "customer-invoice")
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }

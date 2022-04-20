@@ -1,5 +1,6 @@
 package com.autogarage.eindopdracht.DTO;
 
+import com.autogarage.eindopdracht.Model.Customer;
 import com.autogarage.eindopdracht.Model.Maintenance;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -19,4 +20,6 @@ public class InvoiceDTO {
     private Boolean isPayed;
 
     private Maintenance maintenance;
+
+    private Customer customer;
 }

@@ -2,6 +2,7 @@
 
 ***
 MAIN
+*) Add bestanden uploaden
 
 1) Error catch van update employee komt niet in de binding result, Error handeling aanpassen. PUT request
 2) Aditable toevoegen aan classes, tevens DTO's en zorgen dat ook de dates worden gereturned
