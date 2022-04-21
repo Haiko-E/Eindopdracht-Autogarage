@@ -29,6 +29,9 @@ public class Car extends Auditable<String> {
     private String type;
     private String licensePlate;
 
+    @Lob
+    byte[] carPapers;
+
     @ManyToOne
     @JsonBackReference(value = "customer-car")
     @JoinColumn(name = "customer_id")

@@ -10,6 +10,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class CarController {
 
     // CREATE
     @PostMapping("/cars")
-    ResponseEntity<Object> createCar(@Valid @RequestBody CarDTO carDTO, BindingResult bindingResult) {
+    ResponseEntity<Object> createCar(@Valid @RequestBody CarDTO carDTO, BindingResult bindingResult) throws IOException {
         if(bindingResult.hasErrors()){
             StringBuilder sb = new StringBuilder();
             for (FieldError error : bindingResult.getFieldErrors()){

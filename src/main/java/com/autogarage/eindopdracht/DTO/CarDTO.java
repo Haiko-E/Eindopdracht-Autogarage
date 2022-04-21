@@ -35,6 +35,8 @@ public class CarDTO extends Auditable<String> {
     @NotBlank(message = "licenseplate cant be blank")
     private String licensePlate;
 
+    byte[] carPapers;
+
     private Customer customer;
 
     private List<Maintenance> maintenances;

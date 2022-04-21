@@ -68,7 +68,9 @@ public class CarServiceIml implements CarService {
         car.setBrand(carDTO.getBrand());
         car.setType(carDTO.getType());
         car.setLicensePlate(carDTO.getLicensePlate());
+        car.setCarPapers(carDTO.getCarPapers());
         car.setCustomer(carDTO.getCustomer());
+        car.setMaintenances(carDTO.getMaintenances());
         carRepo.save(car);
         return modelMapper.map(car, CarDTO.class);
     }
