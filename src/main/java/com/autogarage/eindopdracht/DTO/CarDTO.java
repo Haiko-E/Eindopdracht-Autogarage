@@ -1,6 +1,7 @@
 package com.autogarage.eindopdracht.DTO;
 
 import com.autogarage.eindopdracht.Model.Auditable;
+import com.autogarage.eindopdracht.Model.CarPaper;
 import com.autogarage.eindopdracht.Model.Customer;
 import com.autogarage.eindopdracht.Model.Maintenance;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -35,7 +36,7 @@ public class CarDTO extends Auditable<String> {
     @NotBlank(message = "licenseplate cant be blank")
     private String licensePlate;
 
-    byte[] carPapers;
+    private CarPaper carPapers;
 
     private Customer customer;
 

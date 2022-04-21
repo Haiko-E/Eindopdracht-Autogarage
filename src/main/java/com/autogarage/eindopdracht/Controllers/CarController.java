@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -33,6 +34,12 @@ public class CarController {
             return new ResponseEntity<>(newCar, HttpStatus.CREATED);
         }
 
+    }
+
+    @PostMapping("/cars/{id}/add-papers")
+    ResponseEntity<Object> createCar(@PathVariable Long id, @RequestBody MultipartFile file) throws IOException {
+            String message = carService.addCarPapersToCar(id, file);
+            return new ResponseEntity<>(message, HttpStatus.CREATED);
     }
 
     // READ

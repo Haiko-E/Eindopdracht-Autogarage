@@ -1,5 +1,6 @@
 package com.autogarage.eindopdracht.Controllers;
 
+import com.autogarage.eindopdracht.Model.CarPaper;
 import com.autogarage.eindopdracht.Service.CarPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,8 @@ public class CarPaperController {
     ResponseEntity<Object> createCarPaper(@RequestBody MultipartFile file) {
         try {
             if (Objects.equals(file.getContentType(), "application/pdf")) {
-                String message = carPaperService.createCarPaper(file);
-                return new ResponseEntity<>(message, HttpStatus.CREATED);
+                CarPaper carPaper = carPaperService.createCarPaper(file);
+                return new ResponseEntity<>(carPaper, HttpStatus.CREATED);
             }
             return new ResponseEntity<>("please upload a pdf file", HttpStatus.BAD_REQUEST);
         } catch (IOException exception) {

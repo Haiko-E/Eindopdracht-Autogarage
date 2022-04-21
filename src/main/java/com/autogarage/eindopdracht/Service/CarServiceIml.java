@@ -3,11 +3,14 @@ package com.autogarage.eindopdracht.Service;
 import com.autogarage.eindopdracht.DTO.CarDTO;
 import com.autogarage.eindopdracht.Exceptions.RecordNotFoundException;
 import com.autogarage.eindopdracht.Model.Car;
+import com.autogarage.eindopdracht.Model.CarPaper;
 import com.autogarage.eindopdracht.Repository.CarRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +19,9 @@ import java.util.Optional;
 public class CarServiceIml implements CarService {
     @Autowired
     CarRepo carRepo;
+
+    @Autowired
+    CarPaperService carPaperService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -27,7 +33,18 @@ public class CarServiceIml implements CarService {
         Car car = carRepo.save(newCar);
         return modelMapper.map(car, CarDTO.class);
     }
-     //READ
+
+    @Override
+    public String addCarPapersToCar(Long carId, MultipartFile carPapers) throws IOException {
+        Car car = carRepo.findById(carId).get();
+        CarPaper carPaper =  carPaperService.createCarPaper(carPapers);
+        carPaper.setCar(car);
+        car.setCarPapers(carPaper);
+        carRepo.save(car);
+        return "Car papers are uploaded to your car";
+    }
+
+    //READ
     @Override
     public List<CarDTO> findAllCars() {
         List<Car> cars = carRepo.findAll();

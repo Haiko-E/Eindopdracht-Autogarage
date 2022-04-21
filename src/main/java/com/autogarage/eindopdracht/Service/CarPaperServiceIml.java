@@ -1,8 +1,10 @@
 package com.autogarage.eindopdracht.Service;
 
+import com.autogarage.eindopdracht.DTO.CarPaperDTO;
 import com.autogarage.eindopdracht.Exceptions.RecordNotFoundException;
 import com.autogarage.eindopdracht.Model.CarPaper;
 import com.autogarage.eindopdracht.Repository.CarPaperRepo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,14 +17,17 @@ public class CarPaperServiceIml implements CarPaperService {
     @Autowired
     CarPaperRepo carPaperRepo;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
     // CREATE
     @Override
-    public String createCarPaper(MultipartFile file) throws IOException {
+    public CarPaper createCarPaper(MultipartFile file) throws IOException {
         CarPaper newCarPaper = new CarPaper();
         newCarPaper.setCarPapers(file.getBytes());
         CarPaper carPaper = carPaperRepo.save(newCarPaper);
-        return "Car papers uploaded";
+
+        return carPaper;
     }
 
     // READ

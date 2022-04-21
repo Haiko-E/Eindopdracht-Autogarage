@@ -1,7 +1,9 @@
 package com.autogarage.eindopdracht.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,5 +23,11 @@ public class CarPaper {
     private Long id;
 
     @Lob
+    @JsonIgnore
     private byte[] carPapers;
+
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    @JsonManagedReference(value = "car_paper-car")
+    private Car car;
 }
