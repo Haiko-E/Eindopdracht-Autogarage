@@ -18,18 +18,18 @@ public class MaintenanceItemController {
     MaintenanceItemService maintenanceItemService;
 
     // GET REQUESTS
-    @GetMapping("/maintenanceItems")
+    @GetMapping("/maintenance-items")
     ResponseEntity<Object> getAllMaintenanceItems () {
         return new ResponseEntity<>(maintenanceItemService.findAllMaintenanceItems(), HttpStatus.OK);
     }
-    @GetMapping("/maintenanceItems/{id}")
+    @GetMapping("/maintenance-items/{id}")
     ResponseEntity<Object> getMaintenanceItemById (@PathVariable Long id) {
         return new ResponseEntity<>(maintenanceItemService.findMaintenanceItemById(id), HttpStatus.OK);
     }
 
 
     // POST REQUESTS
-    @PostMapping("/maintenanceItems")
+    @PostMapping("/maintenance-items")
     ResponseEntity<Object> createMaintenanceItem (@Valid @RequestBody MaintenanceItemDTO maintenanceItemDTO, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             StringBuilder sb = new StringBuilder();
@@ -46,7 +46,7 @@ public class MaintenanceItemController {
     }
 
     // DELETE REQUEST
-    @DeleteMapping("/maintenanceItems/{id}")
+    @DeleteMapping("/maintenance-items/{id}")
     ResponseEntity<Object> deleteMaintenanceItem (@PathVariable Long id) {
         return new ResponseEntity<>(maintenanceItemService.deleteMaintenanceItem(id), HttpStatus.OK);
     }

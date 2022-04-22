@@ -18,22 +18,22 @@ public class RepairOperationController {
     RepairOperationService repairOperationService;
 
     // GET REQUESTS
-    @GetMapping("/repairoperations")
-    ResponseEntity<Object> getAllRepairOperations () {
+    @GetMapping("/repair-operations")
+    ResponseEntity<Object> getAllRepairOperations() {
         return new ResponseEntity<>(repairOperationService.findAllRepairOperations(), HttpStatus.OK);
     }
-    @GetMapping("/repairoperations/{id}")
-    ResponseEntity<Object> getRepairOperationById (@PathVariable Long id) {
+
+    @GetMapping("/repair-operations/{id}")
+    ResponseEntity<Object> getRepairOperationById(@PathVariable Long id) {
         return new ResponseEntity<>(repairOperationService.findRepairOperationById(id), HttpStatus.OK);
     }
 
-
     // POST REQUESTS
-    @PostMapping("/repairoperations")
-    ResponseEntity<Object> createRepairOperation (@Valid @RequestBody RepairOperationDTO repairOperationDTO, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    @PostMapping("/repair-operations")
+    ResponseEntity<Object> createRepairOperation(@Valid @RequestBody RepairOperationDTO repairOperationDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             StringBuilder sb = new StringBuilder();
-            for (FieldError error : bindingResult.getFieldErrors()){
+            for (FieldError error : bindingResult.getFieldErrors()) {
                 sb.append(error.getDefaultMessage());
                 sb.append("\n");
             }
@@ -46,11 +46,11 @@ public class RepairOperationController {
     }
 
     // PUT REQUESTS
-    @PutMapping("/repairoperations/{id}")
-    ResponseEntity<Object> updateRepairOperation (@PathVariable Long id, @Valid @RequestBody RepairOperationDTO repairOperationDTO , BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+    @PutMapping("/repair-operations/{id}")
+    ResponseEntity<Object> updateRepairOperation(@PathVariable Long id, @Valid @RequestBody RepairOperationDTO repairOperationDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             StringBuilder sb = new StringBuilder();
-            for (FieldError error : bindingResult.getFieldErrors()){
+            for (FieldError error : bindingResult.getFieldErrors()) {
                 sb.append(error);
                 sb.append("\n");
             }
@@ -62,8 +62,8 @@ public class RepairOperationController {
     }
 
     // DELETE REQUEST
-    @DeleteMapping("/repairoperations/{id}")
-    ResponseEntity<Object> deleteRepairOperation (@PathVariable Long id) {
+    @DeleteMapping("/repair-operations/{id}")
+    ResponseEntity<Object> deleteRepairOperation(@PathVariable Long id) {
         return new ResponseEntity<>(repairOperationService.deleteRepairOperation(id), HttpStatus.OK);
     }
 }
