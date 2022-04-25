@@ -24,11 +24,11 @@ public class Maintenance {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToMany(mappedBy = "maintenance")
+    @OneToMany(mappedBy = "maintenance", fetch = FetchType.EAGER)
     @JsonManagedReference(value = "maintenance-maintenanceItem")
     private List<MaintenanceItem> maintenanceItems;
 
-    @OneToOne(mappedBy = "maintenance", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "maintenance", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonBackReference(value = "invoice-maintenance")
     private Invoice invoice;
 

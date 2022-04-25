@@ -1,13 +1,14 @@
 package com.autogarage.eindopdracht.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,8 +24,8 @@ public class RepairOperation {
     private String name;
     private Integer price;
 
-    @OneToOne(targetEntity = MaintenanceItem.class, mappedBy = "repairOperation")
-    @JsonBackReference(value = "maintenanceItem-repairOperation")
-    private MaintenanceItem maintenanceItem;
+    @OneToMany(mappedBy = "repairOperation")
+    @JsonManagedReference(value = "maintenanceItem-repairOperation")
+    private List<MaintenanceItem> maintenanceItem;
 
 }

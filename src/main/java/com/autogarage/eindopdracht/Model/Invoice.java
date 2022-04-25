@@ -24,7 +24,7 @@ public class Invoice {
     private Integer totalPrice;
     private Boolean isPayed = false;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(optional = false)
     @JoinColumn(name = "maintenance_id")
     @JsonManagedReference(value = "invoice-maintenance")
     private Maintenance maintenance;

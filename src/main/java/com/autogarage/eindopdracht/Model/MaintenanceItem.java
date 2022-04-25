@@ -3,7 +3,6 @@ package com.autogarage.eindopdracht.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,13 +23,13 @@ public class MaintenanceItem {
 
     private Integer quantity;
 
-    @OneToOne(targetEntity =RepairOperation.class, cascade = CascadeType.MERGE)
-    @JsonManagedReference(value = "maintenanceItem-repairOperation")
+    @ManyToOne
+    @JsonBackReference(value = "maintenanceItem-repairOperation")
     @JoinColumn(name = "repair_operation_id")
     private RepairOperation repairOperation;
 
-    @OneToOne(targetEntity =Part.class, cascade = CascadeType.MERGE)
-    @JsonManagedReference(value = "maintenanceItem-part")
+    @ManyToOne
+    @JsonBackReference(value = "maintenanceItem-part")
     @JoinColumn(name = "part_id")
     private Part part;
 

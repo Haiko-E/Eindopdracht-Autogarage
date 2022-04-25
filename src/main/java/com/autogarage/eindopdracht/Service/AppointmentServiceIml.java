@@ -1,10 +1,10 @@
 package com.autogarage.eindopdracht.Service;
 
-
 import com.autogarage.eindopdracht.DTO.AppointmentDTO;
 import com.autogarage.eindopdracht.Exceptions.RecordNotFoundException;
 import com.autogarage.eindopdracht.Model.Appointment;
 import com.autogarage.eindopdracht.Repository.AppointmentRepo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,25 +32,36 @@ public class AppointmentServiceIml implements AppointmentService{
 
     // READ
     @Override
+    @JsonIgnoreProperties({"car", "customer"})
     public List<AppointmentDTO> findAllAppointments() {
         List<Appointment> appointments =  appointmentRepo.findAll();
         List<AppointmentDTO> appointmentDTOS = new ArrayList<>();
 
         for (Appointment appointment : appointments) {
-            AppointmentDTO appointmentDTO = modelMapper.map(appointment, AppointmentDTO.class);
-            appointmentDTOS.add(appointmentDTO);
+            AppointmentDTO appointmentDTO1 = new AppointmentDTO();
+            appointmentDTO1.setId(appointment.getId());
+            appointmentDTO1.setDescription(appointment.getDescription());
+            appointmentDTO1.setMaintenanceDetails(appointment.getMaintenanceDetails());
+            appointmentDTO1.setDate(appointment.getDate());
+            appointmentDTO1.setLastModifiedDate(appointment.getLastModifiedDate());
+            appointmentDTO1.setCreationDate(appointment.getCreationDate());
+            appointmentDTOS.add(appointmentDTO1);
         }
         return appointmentDTOS;
     }
 
     @Override
     public AppointmentDTO findAppointmentById(Long id) {
-        Optional<Appointment> appointment = appointmentRepo.findById(id);
-        if (appointment.isPresent()) {
-            return modelMapper.map(appointment.get(), AppointmentDTO.class);
-        } else {
-            throw new RecordNotFoundException("Appointment not found");
-        }
+        Appointment appointment = appointmentRepo.findById(id).orElseThrow(() -> new RecordNotFoundException("appointment not found"));
+            AppointmentDTO appointmentDTO = new AppointmentDTO();
+            appointmentDTO.setDescription(appointment.getDescription());
+            appointmentDTO.setMaintenanceDetails(appointment.getMaintenanceDetails());
+            appointmentDTO.setDate(appointment.getDate());
+            appointmentDTO.setId(appointment.getId());
+            appointmentDTO.setCreationDate(appointment.getCreationDate());
+            appointmentDTO.setLastModifiedDate(appointment.getLastModifiedDate());
+            return appointmentDTO;
+
     }
 
     // UPDATE

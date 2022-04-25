@@ -49,7 +49,6 @@ class CustomerServiceImlTest {
     Car car;
 
 
-
     @BeforeEach
     void setUp() {
         Car car1 = new Car(1002L,"Seat", "Leon", "3-srp-wx", null, null, null);
@@ -97,14 +96,14 @@ class CustomerServiceImlTest {
 
 
 
-        Long id = 1055L;
+        Long id = 1001L;
         CustomerDTO expected = customerDTO;
         RecordNotFoundException expectedError = new RecordNotFoundException("customer not found");
 
         CustomerDTO found =  customerService.findCustomerById(id);
 
 
-        assertEquals(expectedError, found);
+        assertEquals(expected, found);
 
     }
 

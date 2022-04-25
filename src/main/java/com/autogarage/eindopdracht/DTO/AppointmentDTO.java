@@ -5,21 +5,21 @@ import com.autogarage.eindopdracht.Model.Car;
 import com.autogarage.eindopdracht.Model.Customer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
 @JsonInclude(Include.NON_NULL)
+@AllArgsConstructor
+@NoArgsConstructor
 public class AppointmentDTO extends Auditable<String> {
     private Long id;
 
-    @NotNull(message = "brand cant be null")
-    @NotBlank(message = "brand cant be blank")
+    @NotNull(message = "maintenance detail cant be null")
     private String maintenanceDetails;
 
     private String description;
@@ -27,9 +27,9 @@ public class AppointmentDTO extends Auditable<String> {
     @NotNull(message = "date cant be null")
     private Date date;
 
-    @NotNull(message = "customer cant be null")
+
     private Customer customer;
 
-    @NotNull(message = "car cant be null")
+
     private Car car;
 }

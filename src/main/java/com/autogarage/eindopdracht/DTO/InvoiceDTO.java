@@ -1,7 +1,5 @@
 package com.autogarage.eindopdracht.DTO;
 
-import com.autogarage.eindopdracht.Model.Customer;
-import com.autogarage.eindopdracht.Model.Maintenance;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.AllArgsConstructor;
@@ -19,7 +17,7 @@ public class InvoiceDTO {
     private Integer totalPrice;
     private Boolean isPayed;
 
-    private Maintenance maintenance;
+    private MaintenanceDTO maintenance;
 
-    private Customer customer;
+    private CustomerDTO customer;
 }
