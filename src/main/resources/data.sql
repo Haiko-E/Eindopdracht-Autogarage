@@ -23,5 +23,7 @@ INSERT INTO maintenance_items(id, quantity, maintenance_id, part_id, repair_oper
 INSERT INTO maintenance_items(id, quantity, maintenance_id, part_id, repair_operation_id)VALUES (5002, 1, 4001, null, 3001);
 INSERT INTO maintenance_items(id, quantity, maintenance_id, part_id, repair_operation_id)VALUES (5003, 1, 4001, null, 3002);
 
+INSERT INTO maintenance_items(id, quantity, maintenance_id, part_id, repair_operation_id)VALUES (5004, 1, 4002, null, 3001);
+
 INSERT INTO invoices(id, is_payed, total_price, maintenance_id, customer_id) VALUES (6001, 'false', 106, 4001, 1001);
 

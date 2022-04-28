@@ -5,11 +5,13 @@ import com.autogarage.eindopdracht.DTO.CustomerDTO;
 import com.autogarage.eindopdracht.Exceptions.RecordNotFoundException;
 import com.autogarage.eindopdracht.Model.Car;
 import com.autogarage.eindopdracht.Model.Customer;
+import com.autogarage.eindopdracht.Repository.AppointmentRepo;
 import com.autogarage.eindopdracht.Repository.CarRepo;
 import com.autogarage.eindopdracht.Repository.CustomerRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -20,6 +22,9 @@ import java.util.Optional;
 public class CustomerServiceIml implements CustomerService {
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    AppointmentRepo appointmentRepo;
 
     @Autowired
     CustomerRepo customerRepo;
@@ -93,15 +98,11 @@ public class CustomerServiceIml implements CustomerService {
 
     // DELETE
     @Override
+    @Transactional
     public CustomerDTO deleteCustomer(Long id) {
         Optional<Customer> customer = customerRepo.findById(id);
         if(customer.isPresent()){
-            if(customer.get().getCars() != null){
-                for (Car car : customer.get().getCars()){
-                    Long carId = car.getId();
-                    carRepo.deleteById(carId);
-                }
-            }
+            appointmentRepo.deleteByCustomerId(id);
             CustomerDTO customerDTO = modelMapper.map(customer.get(), CustomerDTO.class);
             customerRepo.deleteById(id);
             return customerDTO;

@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/employees/**").hasAnyAuthority("ADMIN", "SUPERUSER")
                 .antMatchers("/invoices/**").hasAnyAuthority("ADMIN", "SUPERUSER")
                 .antMatchers("/maintenances/**").hasAnyAuthority("MECHANIC", "SUPERUSER")
+                .antMatchers("/maintenance-items/{id}/create-invoice").hasAnyAuthority("ADMIN", "SUPERUSER")
                 .antMatchers("/maintenance-items/**").hasAnyAuthority("MECHANIC", "SUPERUSER")
                 .antMatchers("/parts/**").hasAnyAuthority("MECHANIC", "SUPERUSER")
                 .antMatchers("/repair-operations/**").hasAnyAuthority("MECHANIC", "SUPERUSER")

@@ -4,10 +4,12 @@ import com.autogarage.eindopdracht.DTO.CarDTO;
 import com.autogarage.eindopdracht.Exceptions.RecordNotFoundException;
 import com.autogarage.eindopdracht.Model.Car;
 import com.autogarage.eindopdracht.Model.CarPaper;
+import com.autogarage.eindopdracht.Repository.AppointmentRepo;
 import com.autogarage.eindopdracht.Repository.CarRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,6 +21,9 @@ import java.util.Optional;
 public class CarServiceIml implements CarService {
     @Autowired
     CarRepo carRepo;
+
+    @Autowired
+    AppointmentRepo appointmentRepo;
 
     @Autowired
     CarPaperService carPaperService;
@@ -94,10 +99,12 @@ public class CarServiceIml implements CarService {
 
     // DELETE
     @Override
+    @Transactional
     public CarDTO deleteCar(Long id) {
         Optional<Car> car = carRepo.findById(id);
         if(car.isPresent()){
             CarDTO carDTO = modelMapper.map(car.get(), CarDTO.class);
+            appointmentRepo.deleteByCarId(id);
             carRepo.deleteById(id);
             return carDTO;
         } else {

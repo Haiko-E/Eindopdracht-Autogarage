@@ -26,11 +26,11 @@ public class Appointment extends Auditable<String> {
     private String description;
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id")
     private Car car;
 

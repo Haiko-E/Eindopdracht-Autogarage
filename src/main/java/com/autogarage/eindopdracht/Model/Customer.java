@@ -30,11 +30,11 @@ public class Customer {
     private String zipcode;
     private String city;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "customer-car")
     private List<Car> cars;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "customer-invoice")
     private List<Invoice> invoices;
 

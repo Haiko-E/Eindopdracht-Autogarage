@@ -24,7 +24,7 @@ public class Maintenance {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToMany(mappedBy = "maintenance", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "maintenance", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference(value = "maintenance-maintenanceItem")
     private List<MaintenanceItem> maintenanceItems;
 

@@ -29,7 +29,7 @@ public class Car extends Auditable<String> {
     private String type;
     private String licensePlate;
 
-    @OneToOne(mappedBy = "car")
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference(value = "car_paper-car")
     private CarPaper carPapers;
 
@@ -38,7 +38,7 @@ public class Car extends Auditable<String> {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "car-maintenance")
     private List<Maintenance> maintenances;
 
