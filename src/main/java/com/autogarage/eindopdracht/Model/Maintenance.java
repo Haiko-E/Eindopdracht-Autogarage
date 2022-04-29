@@ -28,7 +28,7 @@ public class Maintenance {
     @JsonManagedReference(value = "maintenance-maintenanceItem")
     private List<MaintenanceItem> maintenanceItems;
 
-    @OneToOne(mappedBy = "maintenance", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "maintenance", cascade = CascadeType.ALL)
     @JsonBackReference(value = "invoice-maintenance")
     private Invoice invoice;
 

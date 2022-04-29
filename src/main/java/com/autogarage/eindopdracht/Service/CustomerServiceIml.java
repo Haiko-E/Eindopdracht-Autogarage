@@ -43,10 +43,10 @@ public class CustomerServiceIml implements CustomerService {
     // READ
     @Override
     public List<CustomerDTO> findAllCustomers() {
-        List<Customer> customers =  customerRepo.findAll();
+        List<Customer> customers = customerRepo.findAll();
         List<CustomerDTO> customerDTOS = new ArrayList<>();
 
-        for(Customer customer : customers) {
+        for (Customer customer : customers) {
             CustomerDTO customerDTO = modelMapper.map(customer, CustomerDTO.class);
             customerDTOS.add(customerDTO);
         }
@@ -55,8 +55,8 @@ public class CustomerServiceIml implements CustomerService {
 
     @Override
     public CustomerDTO findCustomerById(Long id) {
-        Optional<Customer> customer =  customerRepo.findById(id);
-        if (customer.isPresent()){
+        Optional<Customer> customer = customerRepo.findById(id);
+        if (customer.isPresent()) {
             CustomerDTO customerDTO = modelMapper.map(customer.get(), CustomerDTO.class);
             return customerDTO;
         } else {
@@ -68,13 +68,13 @@ public class CustomerServiceIml implements CustomerService {
     public List<CarDTO> findCustomerCars(Long id) {
         Optional<Customer> customer = customerRepo.findById(id);
         List<CarDTO> carDTOS = new ArrayList<>();
-        if(customer.isPresent()) {
-            List<Car> cars =  customer.get().getCars();
-            for(Car car : cars){
+        if (customer.isPresent()) {
+            List<Car> cars = customer.get().getCars();
+            for (Car car : cars) {
                 CarDTO carDTO = modelMapper.map(car, CarDTO.class);
                 carDTOS.add(carDTO);
             }
-        return carDTOS;
+            return carDTOS;
         } else {
             throw new RecordNotFoundException("no car found");
         }
@@ -82,7 +82,7 @@ public class CustomerServiceIml implements CustomerService {
 
     // UPDATE
     @Override
-    public CustomerDTO updateCustomer( CustomerDTO customerDTO, Long id) {
+    public CustomerDTO updateCustomer(CustomerDTO customerDTO, Long id) {
         Customer customer = customerRepo.findById(id).orElseThrow(() -> new RecordNotFoundException("customer not found"));
         customer.setFirstname(customerDTO.getFirstname());
         customer.setLastname(customerDTO.getLastname());
@@ -101,7 +101,7 @@ public class CustomerServiceIml implements CustomerService {
     @Transactional
     public CustomerDTO deleteCustomer(Long id) {
         Optional<Customer> customer = customerRepo.findById(id);
-        if(customer.isPresent()){
+        if (customer.isPresent()) {
             appointmentRepo.deleteByCustomerId(id);
             CustomerDTO customerDTO = modelMapper.map(customer.get(), CustomerDTO.class);
             customerRepo.deleteById(id);
@@ -109,8 +109,5 @@ public class CustomerServiceIml implements CustomerService {
         } else {
             throw new RecordNotFoundException("unable to find customer");
         }
-
-
-
     }
 }

@@ -102,8 +102,9 @@ public class CarServiceIml implements CarService {
     @Transactional
     public CarDTO deleteCar(Long id) {
         Optional<Car> car = carRepo.findById(id);
+        Car car1 = car.get();
         if(car.isPresent()){
-            CarDTO carDTO = modelMapper.map(car.get(), CarDTO.class);
+            CarDTO carDTO = modelMapper.map(car1, CarDTO.class);
             appointmentRepo.deleteByCarId(id);
             carRepo.deleteById(id);
             return carDTO;
